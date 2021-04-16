@@ -1,11 +1,17 @@
+
 const express = require('express')
 const app = express()
 
 const port = 8080
 
+app.set('view engine', 'hbs')
+
 //middleware contenido estatico html
 app.use(express.static('public'))
 
+app.get('/', (req, res) => {
+    res.render('home')
+})
 
 app.get('/hola-mundo', (req, res) => {
     res.send('Hola mundo en su ruta')
