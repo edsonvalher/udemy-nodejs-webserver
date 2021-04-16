@@ -1,7 +1,14 @@
 const http = require('http')
 
 const server = http.createServer((request, response) => {
-    response.write('Hola Mundo')
+
+    response.writeHead(200, { 'Content-Type': 'application/json' })
+
+    const persona = {
+        id: 1,
+        nombre: 'Edson'
+    }
+    response.write(JSON.stringify(persona))
     response.end()
 
 })
