@@ -1,10 +1,15 @@
 
 const express = require('express')
-const app = express()
+const hbs = require('hbs');
 
+const app = express()
 const port = 8080
 
+
+
+//handlebars
 app.set('view engine', 'hbs')
+hbs.registerPartials(__dirname + '/views/partials', (error) => { })
 
 //middleware contenido estatico html
 app.use(express.static('public'))
@@ -22,11 +27,20 @@ app.get('/hola-mundo', (req, res) => {
 
 
 app.get('/elements', (req, res) => {
-    res.sendFile(__dirname + '/public/elements.html')
+    //res.sendFile(__dirname + '/public/elements.html')
+    res.render('elements', {
+        nombre: 'Edson Valenzuela',
+        titulo: 'Curso de Node'
+    })
 })
 
 app.get('/generic', (req, res) => {
-    res.sendFile(__dirname + '/public/generic.html')
+    //res.render('generic')
+    res.render('generic', {
+        nombre: 'Edson Valenzuela',
+        titulo: 'Curso de Node'
+    })
+    //res.sendFile(__dirname + '/public/generic.html')
 })
 
 app.listen(port, () => { console.log(`app listening at http://localhost:${port}`) })
