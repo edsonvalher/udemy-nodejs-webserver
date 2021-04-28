@@ -16,6 +16,7 @@ hbs.registerPartials(__dirname + '/views/partials', (error) => { })
 //middleware contenido estatico html
 app.use(express.static('public'))
 
+/*
 app.get('/', (req, res) => {
     res.render('home', {
         nombre: 'Edson Valenzuela',
@@ -43,6 +44,10 @@ app.get('/generic', (req, res) => {
         titulo: 'Curso de Node'
     })
     //res.sendFile(__dirname + '/public/generic.html')
+})
+*/
+app.get('*', (req, res) => {
+    res.sendFile(__dirname + 'public/index.html')
 })
 
 app.listen(port, () => { console.log(`app listening at http://localhost:${port}`) })
